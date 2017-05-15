@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Home</title>
+</head>
+<body>
+
+	<h3>Welcome to Quoting Dojo!</h3>
+
+		<form action = "/quotes" method = "POST">
+			<h4>Your name: </h4>	
+			<input type="text" name="name">
+			<h4>Your Quote: </h4>
+			<textarea rows="4" cols="50" name="quote"></textarea><br>
+			<input type="submit" value ="Add my Quote">
+		</form>
+
+		<a href="/show" method = "GET"><button>Skip to my Quotes!</button></a>
+
+
+		<% if(typeof(errors) != 'undefined'){ %>
+			<% for(var x in errors){ %>
+			<h5><%= errors[x].message %></h5>
+			<% } %>
+		<% } %>
+</body>
+</html>
