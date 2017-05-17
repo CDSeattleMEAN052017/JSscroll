@@ -1,0 +1,8 @@
+<div class = "box">
+	<h3>Currency Formats</h3>
+	<p> USD : {{value | json}} </p>
+	<p>	USD : {{value | currency}} </p>
+	<p>EUR : {{value |  currency:'EUR':true}}</p>
+	<p>AUS : {{value |  currency:'AUS': true: '2.2-2'}}</p>
+	<p>CNY : {{value | currency:'CNY': true: '1.0-2'}}</p>
+</div>
