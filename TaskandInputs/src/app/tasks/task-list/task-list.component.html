@@ -1,0 +1,9 @@
+<app-task-details [tasks]="tasks"></app-task-details>
+
+<div [ngClass]="{red: !task.status, green: task.status}" *ngFor= 'let task of tasks; let i = index'>
+	<p><strong>Task Details Component</strong></p>
+	<p>Task Name: {{task.name}}</p>
+
+	<button (click)='changeButton(i)'>{{task.status == false ? "Complete" : "Incomplete"}}</button>
+	<p>{{task.status == false ? "Complete" : "Incomplete"}}</p>
+</div>	
