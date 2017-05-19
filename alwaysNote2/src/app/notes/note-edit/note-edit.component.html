@@ -1,0 +1,5 @@
+<h3>Edit Note</h3>
+  <form (submit)= "save_note()" #formData = "ngForm">
+    Note: <input type="text" [(ngModel)]="edit_note.note" #note="ngModel" name ="note">
+    <input type="submit" value= "Update Note">
+  </form>

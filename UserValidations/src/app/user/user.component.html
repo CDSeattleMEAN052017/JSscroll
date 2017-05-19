@@ -1,0 +1,94 @@
+<form name = "myForm"(submit)= "onSubmit(formData)" #formData ="ngForm">
+	
+	<span>First Name:</span>
+	<input type="text" name = "first_name"
+	[(ngModel)] = "user.first_name"
+	#first_name= 'ngModel'
+	minlength="2"
+	maxlength="20"
+	required/>
+	<div [hidden]="first_name.pristine || !first_name.errors" >
+		<h5>There needs to be at least {{first_name.errors?.minlength?.requiredLength | json}} characters!</h5>
+
+
+	</div><br>
+
+	<span>Last Name:</span>
+	<input type = "text" name = "last_name"
+	[(ngModel)] = "user.last_name"
+	#last_name = 'ngModel'
+	minlength="2"
+	maxlength="20"
+	required/>
+	<div [hidden]="last_name.pristine || !last_name.errors">
+		<h5>There needs to be at least {{last_name.errors?.minlength?.requiredLength | json }} characters!</h5>
+	</div><br>
+	
+
+	<span>Email:</span>
+	<input type = "text" name = "email"
+	[(ngModel)] = "user.email"
+	#email = 'ngModel'
+	required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+	maxlength="200"
+	required/>
+	<div [hidden]="email.pristine || !email.errors">
+		<h5>Email must be in a valid format!</h5>
+	</div><br>
+	
+
+	<span>Password: </span>
+	<input type = "password" name = "password"
+	[(ngModel)] = "user.password"
+	#password = 'ngModel'
+	minlength="2"
+	maxlength="20"
+	required/>
+	<div [hidden]="password.pristine || !password.errors">
+		<h5>Password must be at least {{password.errors?.minlength?.requiredLength | json }} characters long!</h5>
+	</div><br>
+	
+
+	<span>Password Confirmation: </span>
+	<input type = "password" name = "passwordConf"
+	[(ngModel)] = "user.passwordConf"
+	#passwordConf = 'ngModel'
+	compare-to="user.password"
+	required/>
+	<div [hidden]="passwordConf.pristine || passwordMatch()">
+    	<h5>Password and Password Confirmation must match</h5>
+  	</div>
+  	<br>
+	<span>State: </span>
+	<select name = "state" 
+	required
+	[(ngModel)] = "user.state"
+	#state = 'ngModel'>	
+		<option value ="WA">WA</option>
+		<option value ="OR">OR</option>
+		<option value = "CA">CA</option>
+	</select>
+	<br>
+	<input 
+    type="submit"
+    [disabled]="!formData.form.valid"
+    />
+</form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+	

@@ -1,0 +1,42 @@
+<!-- Creating a new note-->
+<form (submit)="createNote(formData)" #formData = "ngForm">
+  <h2>Create a new note</h2>
+  <span>Note: </span>
+  <input type="text" name="note"
+  [(ngModel)] = "newNote.note"
+  #note = 'ngModel'
+  minlength="2"
+  required/>
+
+<div [hidden]="note.pristine || !note.errors" >
+		<h5>There needs to be at least {{note.errors?.minlength?.requiredLength | json}} characters!</h5>
+</div>
+  <input type="submit" value="Add Note">
+</form>
+
+<!--End create note-->
+
+<!--Showing all notes-->
+<table class= "table" >
+  <tr class= "table">
+    <th class= "table">Id</th>
+    <th>Note</th>
+    <th>Date Created</th>
+    <th>Date Updated</th>
+    <th>Actions</th>
+  </tr>
+  <tr *ngFor = "let note of notes; let i = index">
+    <td>{{note._id}}</td>
+    <td>{{note.note}}</td>
+    <td>{{note.created_at | date}}</td>
+    <td>{{note.updated_at | date }}</td>
+    <td>
+      <button (click) = deleteNote(i)>Delete</button>
+      <button (click) = showNote(note)>Edit</button>
+    </td>
+  </tr>
+</table>
+{{chosen_note | json}}
+
+<app-note-edit *ngIf ="chosen_note" [this_note]="chosen_note"(save)="update_note($event)"></app-note-edit>
+
