@@ -26,12 +26,17 @@ export class FriendsService {
   }
 
   edit(friend: Friend){
-    return this.http.put("/friends/" + friend._id, friend, OPTIONS).map(data =>{ 
-      console.log(data)
-      return data.json})
+    return this.http.put("/friends/" + friend._id, friend, OPTIONS).toPromise()
+    // .map(data =>{ 
+    //   console.log(data)
+    //   return data.json})
   }
 
-  get_one_friend(friend: Friend){
-    return this.http.get('/friends/' + friend._id).toPromise()
+  get_one_friend(id){
+    console.log('*******friend service***********')
+    return this.http.get('/friends/' + id).map(data => {
+      console.log(data)
+      return data.json()
+    })
   }
 }

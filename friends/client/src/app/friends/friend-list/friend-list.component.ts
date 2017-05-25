@@ -26,15 +26,29 @@ export class FriendListComponent implements OnInit {
     .catch(err => console.log(err));
   }
 
-   
-
-  delete(friend: Friend){
-    this.deleteFriendEvent.emit(friend); 
+  // delete(id, index) {
+  //   this.friendsService.destroy(id)
+  //     .then(data => {
+  //       this.router.navigate([''])
+  //      })
+  //     .catch( err => {
+  //       console.log(err);
+  //      });
+  //   }
+    delete(friend: Friend){
+		this.friendsService.destroy(friend)
+      .then(data => {
+        this.router.navigate([''])
+       })
+      .catch( err => {
+        console.log(err);
+       });
+    }
     
     //this is taking the selected friend and emitting to delete in parent
     //then go to parent HTML and add <app-friend-list (deleteFriendEvent) = "delete()" -  when the event gets emitted
         //then the code will run ie delete()
 
   }
-}
+
 

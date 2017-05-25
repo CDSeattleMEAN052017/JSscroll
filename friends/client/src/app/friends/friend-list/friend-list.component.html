@@ -1,5 +1,4 @@
-<h1>  hello</h1>
-<div >
+<div>
   <table>
     <tr>
       <th>Name</th>
@@ -7,18 +6,14 @@
       <th>Update</th>
       <th>Delete</th>
     </tr>
-    <tr *ngFor = "let friend of friends">
+    <tr *ngFor = "let friend of friends; let i = index">
       <td>{{friend.firstname}} {{friend.lastname}}</td>
-      <td> <a href (click)="show(friend)"> Show </a></td>
-      <td><a href (click)="delete(friend)"> Delete </a></td>
+      <td> <a [routerLink]="['/show', friend._id]"> Show </a></td>
+      <td><a href (click)="delete(friend)">Delete</a></td>
+  
       <td><a [routerLink]="['/edit', friend._id, friend]"> Edit</a>
     </tr>
   </table>
 
 <a [routerLink]="['/new']"><button type="button" name="create">New Friend</button></a>
 </div>
-<!--then add delete method to list componenet-->
-
-<!--******when referencing friend in the edit, it is the one that is selected - just one******-->
-  <!--  then go to edit component.ts and @input friend  -->
-  

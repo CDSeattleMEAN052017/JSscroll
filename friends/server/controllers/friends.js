@@ -8,7 +8,7 @@ module.exports = {
                 console.log(err)
             }
             else{
-                console.log(friends)
+                //console.log(friends)
                 res.json(friends)
             }
         })
@@ -30,8 +30,13 @@ module.exports = {
     },
 
     update: function(req, res){
-        Friend.update({id: req.params.id}, {$set: {firstname: req.body.firstname , lastname: req.body.lastname, birthday: req.body.birthday}}, function(err){
-            if(err){
+        console.log(req.body)
+        Friend.findOne({_id: req.params.id}, function(err, thisfriend){
+            thisfriend.firstname = req.body.firstname
+            thisfriend.lastname = req.body.lastname
+            thisfriend.birthday = req.body.birthday
+            thisfriend.save(function(err){
+                if(err){
                 console.log("friend not updated");
                 console.log(err);
                 return res.json(err)
@@ -40,12 +45,27 @@ module.exports = {
                 console.log('updated friend')
                 return res.json(Friend)
             }
+            })
         })
     },
 
+    delete: function(req, res){
+       
+        console.log("in delete function controller")
+        Friend.remove({_id: req.params.id}, function(err){
+           
+        });
 
-    
+    },
 
-
+    show: function(req,res){
+        console.log("*******show controller*********")
+        console.log(req.params._id)
+        console.log("*******show controller*********")
+        console.log(req.params.id)
+        Friend.findOne({_id: req.params.id}, function(err, friend) {
+        console.log(friend);
+        res.json(friend);
+        });
+    }
 }
-    

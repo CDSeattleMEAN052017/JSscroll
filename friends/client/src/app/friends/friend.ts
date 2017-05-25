@@ -4,8 +4,7 @@ export class Friend {
     public firstname: string = "",
     public lastname: string = "",
     public birthday: string = "",
-    public createdAt: Date =  new Date(),
-    public updatedAt: Date = new Date(),
+
   
     ){}
 }
